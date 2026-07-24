@@ -5,6 +5,7 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <conv:DirectionToBrushConverter x:Key="DirectionToBrush" />
+        <conv:TruncateTextConverter x:Key="TruncateText" MaxChars="1500" />
 
         <Style TargetType="Label">
             <Setter Property="VerticalAlignment" Value="Center" />

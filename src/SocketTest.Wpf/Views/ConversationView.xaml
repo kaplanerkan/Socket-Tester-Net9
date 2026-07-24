@@ -8,7 +8,7 @@
                  FontSize="12"
                  BorderThickness="0"
                  HorizontalContentAlignment="Stretch"
-                 ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                  VirtualizingPanel.IsVirtualizing="False"
                  ScrollViewer.CanContentScroll="False"
                  SelectionMode="Extended"
@@ -35,17 +35,25 @@
             </ListBox.ItemContainerStyle>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Timestamp, StringFormat=HH\\:mm\\:ss.fff}"
-                                   Foreground="#888" Margin="0,0,8,0" />
-                        <TextBlock Text="{Binding Direction}"
-                                   Width="64"
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="64" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0"
+                                   Text="{Binding Timestamp, StringFormat=HH\\:mm\\:ss.fff}"
+                                   Foreground="#888" Margin="0,0,8,0" VerticalAlignment="Top" />
+                        <TextBlock Grid.Column="1"
+                                   Text="{Binding Direction}"
                                    FontWeight="Bold"
+                                   VerticalAlignment="Top"
                                    Foreground="{Binding Direction, Converter={StaticResource DirectionToBrush}}" />
-                        <TextBlock Text="{Binding Text}"
+                        <TextBlock Grid.Column="2"
+                                   Text="{Binding Text, Converter={StaticResource TruncateText}}"
                                    TextWrapping="Wrap"
                                    Foreground="{Binding Direction, Converter={StaticResource DirectionToBrush}}" />
-                    </StackPanel>
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
