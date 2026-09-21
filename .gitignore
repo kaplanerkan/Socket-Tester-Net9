@@ -22,3 +22,6 @@ Thumbs.db
 ## Publish output
 publish/
 out/
+
+## ...except the bundled offline package feed
+!packages/*.nupkg
